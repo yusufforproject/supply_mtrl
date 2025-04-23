@@ -1,0 +1,164 @@
+{
+    "data": [
+      {
+        "Machine": "DRBSA1",
+        "Kategori": "Zona 1",
+        "Items": [
+          {
+            "Size": "A031",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "-",
+            "TREAD": "TA031",
+            "PLY1": "V117",
+            "PLY2": "-",
+            "BEAD": "DN314",
+            "SIDEWALL": "S118L",
+            "TUBELESS": "O105",
+            "JOINTLESS": "E002",
+            "STEEL": "Y640"
+          },
+          {
+            "Size": "A227",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "08.00",
+            "TREAD": "TA227",
+            "PLY1": "V0922",
+            "PLY2": "V0913",
+            "BEAD": "WN176",
+            "SIDEWALL": "S295",
+            "TUBELESS": "O2324",
+            "JOINTLESS": "E002",
+            "STEEL": "Y645"
+          }
+        ]
+      },
+      {
+        "Machine": "KRBSA2",
+        "Kategori": "Zona 2",
+        "Items": [
+          {
+            "Size": "A251",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "-",
+            "TREAD": "TA251",
+            "PLY1": "V534",
+            "PLY2": "-",
+            "BEAD": "R320",
+            "SIDEWALL": "S311",
+            "TUBELESS": "O1924",
+            "JOINTLESS": "E002",
+            "STEEL": "Y640"
+          },
+          {
+            "Size": "AA604",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "08.30",
+            "TREAD": "TAA064",
+            "PLY1": "V234",
+            "PLY2": "-",
+            "BEAD": "WN309",
+            "SIDEWALL": "S314L",
+            "TUBELESS": "OP7036",
+            "JOINTLESS": "E002",
+            "STEEL": "Y1148A"
+          }
+        ]
+      },
+      {
+        "Machine": "KRBSA5",
+        "Kategori": "Zona 3",
+        "Items": [
+          {
+            "Size": "A552",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "-",
+            "TREAD": "TA552",
+            "PLY1": "V570",
+            "PLY2": "V530",
+            "BEAD": "DS505",
+            "SIDEWALL": "S5520A",
+            "TUBELESS": "OP4023",
+            "JOINTLESS": "E002",
+            "STEEL": "Y720"
+          },
+          {
+            "Size": "AS022",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "07.30",
+            "TREAD": "TAS022",
+            "PLY1": "V439",
+            "PLY2": "V420",
+            "BEAD": "WS6155",
+            "SIDEWALL": "S7109",
+            "TUBELESS": "O119",
+            "JOINTLESS": "EV1101",
+            "STEEL": "Y645"
+          }
+        ]
+      },
+      {
+        "Machine": "DRBSA2",
+        "Kategori": "Zona 4",
+        "Items": [
+          {
+            "Size": "A322",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "-",
+            "TREAD": "TA322",
+            "PLY1": "VO924",
+            "PLY2": "-",
+            "BEAD": "WN599",
+            "SIDEWALL": "S2340A",
+            "TUBELESS": "OP768",
+            "JOINTLESS": "E002",
+            "STEEL": "Y1148A"
+          },
+          {
+            "Size": "BM129",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "09.00",
+            "TREAD": "TBM129",
+            "PLY1": "VT325",
+            "PLY2": "-",
+            "BEAD": "WN599",
+            "SIDEWALL": "S703",
+            "TUBELESS": "O112",
+            "JOINTLESS": "E002",
+            "STEEL": "Y645"
+          }
+        ]
+      },
+      {
+        "Machine": "DRBSA4",
+        "Kategori": "Zona 5",
+        "Items": [
+          {
+            "Size": "B334",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "-",
+            "TREAD": "TA334",
+            "PLY1": "V330",
+            "PLY2": "-",
+            "BEAD": "WN005",
+            "SIDEWALL": "S674",
+            "TUBELESS": "O117",
+            "JOINTLESS": "E002",
+            "STEEL": "Y645"
+          },
+          {
+            "Size": "BV740",
+            "Quantity": "100 pcs",
+            "Jam Ganti": "08.00",
+            "TREAD": "TBV740",
+            "PLY1": "VX534",
+            "PLY2": "-",
+            "BEAD": "WS558",
+            "SIDEWALL": "S162V",
+            "TUBELESS": "OP924",
+            "JOINTLESS": "E002",
+            "STEEL": "Y1148A"
+          }
+        ]
+      }
+    ]
+  }
