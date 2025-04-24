@@ -11,8 +11,10 @@ $data = json_decode($jsonData, true)['data'] ?? [];
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Schedule Supply Material</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <script src="<?= base_url('assets/js/cdn.js'); ?>"></script>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+        <link rel="stylesheet" href="<?php echo base_url('assets/css/all.css'); ?>">
         <script src="<?php echo base_url('assets/js/datetime.js'); ?>"></script>
     </head>
 
@@ -55,12 +57,10 @@ $data = json_decode($jsonData, true)['data'] ?? [];
 
     <body style="background: linear-gradient(to right,var(--electric-blue),var(--cobalt-blue));" class="p-4">
         <div class="flex justify-between mt-4">
-            <img src="<?php echo base_url( 'assets/imgs/gt150x.png'); ?>" alt="" srcset="" width="300px">
+            <img src="<?php echo base_url('assets/imgs/gt150x.png'); ?>" alt="" srcset="" width="300px">
             <div class="flex space-x-4">
-                <img src="<?php echo base_url( 'assets/imgs/giti.jpg'); ?>" alt="" srcset="" width="150px"
-                    >
-                <img src="<?php echo base_url('assets/imgs/rdl2.png'); ?>" alt="" srcset="" width="150px"
-                    >
+                <img src="<?php echo base_url('assets/imgs/giti.jpg'); ?>" alt="" srcset="" width="150px">
+                <img src="<?php echo base_url('assets/imgs/rdl2.png'); ?>" alt="" srcset="" width="150px">
             </div>
         </div>
         <div class="max-w-full mx-auto mt-8">
@@ -99,13 +99,44 @@ $data = json_decode($jsonData, true)['data'] ?? [];
                 <input type="text" name="search" placeholder="Search here"
                     class="border border-gray-300 px-4 py-1 rounded-full" id="search"
                     style="display: none; opacity: 0; transition: opacity 0.5s ease;">
-                <select name="pilihSearch" id="pilihSearch" class="border border-gray-300 px-2 py-1 rounded-full"
+                <!-- <div id="searchContainer"> -->
+                <!-- <select name="pilihSearch" id="pilihSearch" class="border border-gray-300 px-2 py-1 rounded-full"
                     style="display: none; opacity: 0; transition: opacity 0.5s ease;">
                     <option value="mesin">Mesin</option>
                     <option value="size">Size</option>
                     <option value="kategori">Kategori</option>
                     <option value="kodeMaterial">Kode Material</option>
+                </select> -->
+                <select name="pilihMesin" id="pilihMesin" class="border border-gray-300 px-2 py-1 rounded-full"
+                    style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+                    <option value="">Machine</option>
+                    <option value="SAFERUN">SAFERUN</option>
+                    <option value="EXXIUM">EXXIUM</option>
+                    <option value="SEYEN">SEYEN</option>
                 </select>
+                <select name="pilihZona" id="pilihZona" class="border border-gray-300 px-2 py-1 rounded-full"
+                    style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+                    <option value="">Zona</option>
+                    <option value="Zona 1">Zona 1</option>
+                    <option value="Zona 2">Zona 2</option>
+                    <option value="Zona 3">Zona 3</option>
+                    <option value="Zona 4">Zona 4</option>
+                    <option value="Zona 5">Zona 5</option>
+                </select>
+                <select name="pilihMtrl" id="pilihMtrl" class="border border-gray-300 px-2 py-1 rounded-full"
+                    style="display: none; opacity: 0; transition: opacity 0.5s ease;">
+                    <option value="">Kode Material</option>
+                    <option value="TREAD">Tread</option>
+                    <option value="PLY1">Ply 1</option>
+                    <option value="PLY2">Ply 2</option>
+                    <option value="BEAD_FINISH">Bead Finish</option>
+                    <option value="SIDEWALL">Sidewall</option>
+                    <option value="TUBELESS">Tubeless</option>
+                    <option value="JOINTLESS">Jointless</option>
+                    <option value="BELT1">Belt 1</option>
+                    <option value="BELT2">Belt 2</option>
+                </select>
+                <!-- </div> -->
 
             </div>
 
@@ -114,17 +145,19 @@ $data = json_decode($jsonData, true)['data'] ?? [];
                     <tr style="background-color: var(--picton-blue);" class="text-2xl">
                         <th rowspan="2" class="rounded-tl-lg rounded-bl-lg">Machine</th>
                         <th rowspan="2">Size</th>
+                        <th rowspan="2">Status</th>
                         <th rowspan="2">Jam Ganti</th>
                         <th rowspan="2">Kategori</th>
+                        <th rowspan="2">Lokasi Stock</th>
                         <?php
-                        define('MATERIALS', ['TREAD', 'PLY', 'BEAD', 'SIDEWALL', 'TUBELESS', 'JOINTLESS', 'STEEL']);
+                        define('MATERIALS', ['TREAD', 'PLY', 'PLY2', 'BEAD FINISH', 'SIDEWALL', 'TUBELESS', 'JOINTLESS', 'STEEL BELT', 'BELT2']);
                         foreach (MATERIALS as $index => $material) {
-                            if ($material == 'PLY') {
-                                echo "<th colspan='2'>" . htmlspecialchars($material) . "</th>";
-                            } else {
-                                $class = $index === count(MATERIALS) - 1 ? 'rounded-tr-lg' : '';
-                                echo "<th class='{$class}'>" . htmlspecialchars($material) . "</th>";
-                            }
+                            // if ($material == 'PLY' || $material == 'STEEL BELT') {
+                            //     echo "<th colspan='2'>" . htmlspecialchars($material) . "</th>";
+                            // } else {
+                            $class = $index === count(MATERIALS) - 1 ? 'rounded-tr-lg' : '';
+                            echo "<th class='{$class}'>" . htmlspecialchars($material) . "</th>";
+                            // }
                         }
                         ?>
                     </tr>
@@ -136,14 +169,18 @@ $data = json_decode($jsonData, true)['data'] ?? [];
                         <th>Kode</th>
                         <th>Kode</th>
                         <th>Kode</th>
-                        <th class="rounded-br-lg">Kode</th>
+                        <th>Kode Belt 1</th>
+                        <th class="rounded-br-lg">Kode Belt 2</th>
                     </tr>
                 </thead>
                 <tbody class="text-xl">
                     <?php
                     foreach ($data as $machine) {
                         echo "<tr>
-                        <td rowspan='2' class='rounded-tl-lg'>{$machine['Machine']}</td>";
+                        <td rowspan='2' class='rounded-tl-lg'>{$machine['Machine']}
+                        <br>
+                        <span class='text-gray-400'>{$machine['Type']}</span>
+                        </td>";
 
                         // Add a new <td> with rowspan here
                         // echo "<td rowspan='2' class='text-center font-bold'>{$machine['NewColumn']}</td>";
@@ -151,7 +188,9 @@ $data = json_decode($jsonData, true)['data'] ?? [];
                         foreach ($machine['Items'] as $index => $item) {
                             echo "
                             <td>{$item['Size']}<br><span class='text-gray-400'>{$item['Quantity']}</span></td>
-                            <td class='text-gray-400'>{$item['Jam Ganti']}</td>";
+                            <td class='text-gray-400'>{$item['Jam Ganti']}</td>
+                            <td>{$item['Status']}</td>
+                            ";
 
                             // Add a new <td> with rowspan=2 only for the first item in the loop
                             if ($index === 0) {
@@ -159,17 +198,19 @@ $data = json_decode($jsonData, true)['data'] ?? [];
                             }
 
                             echo "
-                            <td>{$item['TREAD']}</td>
-                            <td>{$item['PLY1']}</td>
-                            <td>{$item['PLY2']}</td>
-                            <td>{$item['BEAD']}</td>
-                            <td>{$item['SIDEWALL']}</td>
-                            <td>{$item['TUBELESS']}</td>
-                            <td>{$item['JOINTLESS']}</td>
-                            <td>{$item['STEEL']}</td>";
+                            <td class='text-gray-400'>{$item['Lokasi']}</td>
+                            <td>{$item['TREAD']}<br><span class='text-gray-400'>{$item['TREAD_INFO']}</span></td>
+                            <td>{$item['PLY1']}<br><span class='text-gray-400'>{$item['PLY1_INFO']}</span></td>
+                            <td>{$item['PLY2']}<br><span class='text-gray-400'>{$item['PLY2_INFO']}</span></td>
+                            <td>{$item['BEAD']}<br><span class='text-gray-400'>{$item['BEAD_INFO']}</span></td>
+                            <td>{$item['SIDEWALL']}<br><span class='text-gray-400'>{$item['SIDEWALL_INFO']}</span></td>
+                            <td>{$item['TUBELESS']}<br><span class='text-gray-400'>{$item['TUBELESS_INFO']}</span></td>
+                            <td>{$item['JOINTLESS']}<br><span class='text-gray-400'>{$item['JOINTLESS_INFO']}</span></td>
+                            <td>{$item['STEEL']}<br><span class='text-gray-400'>{$item['STEEL_INFO']}</span></td>
+                            <td>{$item['STEEL2']}<br><span class='text-gray-400'>{$item['STEEL2_INFO']}</span></td>";
                             echo "</tr>";
                         }
-                        echo "<tr><td colspan='12' class='rounded-br-lg rounded-bl-lg' style='border-bottom: 2px solid #ddd;'></td></tr>";
+                        echo "<tr><td colspan='15' class='rounded-br-lg rounded-bl-lg' style='border-bottom: 2px solid black;'></td></tr>";
                     }
                     ?>
                 </tbody>
@@ -183,23 +224,27 @@ $data = json_decode($jsonData, true)['data'] ?? [];
             // function showSearchInput() {
             const searchElement = document.getElementById("search");
             const previewElement = document.getElementById("searchIcon");
-            const pilihSearchElement = document.getElementById("pilihSearch");
+            // const pilihSearchElement = document.getElementById("pilihSearch");
+            const pilihMesinElement = document.getElementById("pilihMesin");
+            const pilihZonaElement = document.getElementById("pilihZona");
+            const pilihKategoriElement = document.getElementById("pilihMtrl");
+            // const searchContainer = document.getElementById("searchContainer");
 
             let isShowing = false;
             previewElement.addEventListener('click', () => {
                 if (isShowing) {
-                    searchElement.style.opacity = 0;
-                    searchElement.style.display = "none";
-                    pilihSearchElement.style.opacity = 0;
-                    pilihSearchElement.style.display = "none";
+                    [searchElement, pilihMesinElement, pilihZonaElement, pilihKategoriElement].forEach(el => {
+                        el.style.opacity = 0;
+                        el.style.display = "none";
+                    });
                     previewElement.addEventListener('mouseover', mouseOverListener);
                     previewElement.addEventListener('mouseout', mouseOutListener);
                     isShowing = false;
                 } else {
-                    searchElement.style.opacity = 1;
-                    searchElement.style.transition = "opacity 0.5s ease";
-                    pilihSearchElement.style.opacity = 1;
-                    pilihSearchElement.style.transition = "opacity 0.5s ease";
+                    [searchElement, pilihMesinElement, pilihZonaElement, pilihKategoriElement].forEach(el => {
+                        el.style.opacity = 1;
+                        el.style.transition = "opacity 0.5s ease";
+                    });
                     previewElement.removeEventListener('mouseover', mouseOverListener);
                     previewElement.removeEventListener('mouseout', mouseOutListener);
                     isShowing = true;
@@ -208,22 +253,17 @@ $data = json_decode($jsonData, true)['data'] ?? [];
 
 
             const mouseOverListener = () => {
-                searchElement.style.display = "block";
-                searchElement.style.opacity = 0.5;
-                searchElement.style.transition = "opacity 0.5s ease";
-                searchElement.style.marginLeft = "0.5rem";
-                pilihSearchElement.style.display = "block";
-                pilihSearchElement.style.opacity = 0.5;
-                pilihSearchElement.style.transition = "opacity 0.5s ease";
-                pilihSearchElement.style.marginLeft = "0.5rem";
+                [searchElement, pilihMesinElement, pilihZonaElement, pilihKategoriElement].forEach(el => {
+                    el.style.cssText = "display: block; opacity: 0.5; transition: opacity 0.5s ease; margin-left: 0.5rem;";
+                });
             };
             previewElement.addEventListener('mouseover', mouseOverListener);
 
             const mouseOutListener = () => {
-                searchElement.style.opacity = 0;
-                searchElement.style.display = "none";
-                pilihSearchElement.style.opacity = 0;
-                pilihSearchElement.style.display = "none";
+                [searchElement, pilihMesinElement, pilihZonaElement, pilihKategoriElement].forEach(el => {
+                    el.style.opacity = 0;
+                    el.style.display = "none";
+                });
             };
             previewElement.addEventListener('mouseout', mouseOutListener);
 
@@ -231,19 +271,106 @@ $data = json_decode($jsonData, true)['data'] ?? [];
 
             // Tambahkan event listener untuk semua input pencarian
             searchElement.addEventListener('input', filterTable);
-            pilihSearchElement.addEventListener('change', filterTable);
+            // pilihSearchElement.addEventListener('change', filterTable);
+            //make filter for selectedMachine
+            pilihMesinElement.addEventListener('change', () => {
+                //refresh page only fetch for the selected machine
+                const selectedMachine = pilihMesinElement.value;
+                const table = document.getElementById('scheduleTable');
+                const rows = table.rows;
+
+                let currentCategory = "";
+
+                for (let i = 2; i < rows.length; i++) {
+                    const cells = rows[i].cells;
+
+                    // If the first cell has a rowspan, update the current category
+                    if (cells[0] && cells[0].rowSpan > 1) {
+                        currentCategory = cells[0].innerText.trim();
+                    }
+
+                    // Show all if "all" is selected
+                    if (selectedMachine === "" || currentCategory.includes(selectedMachine)) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }
+            });
+
+            pilihZonaElement.addEventListener('change', () => {
+                //refresh page only fetch for the selected machine
+                const selectedZona = pilihZonaElement.value;
+                const rows = document.querySelectorAll("#scheduleTable tbody tr");
+
+                // const targetCol = 4;
+                let currentZona = null;
+                let spanCount = 0;
+
+                rows.forEach(row => {
+                    const cells = row.cells;
+
+                    // Check if this row has Zona in column index 4
+                    if (cells.length > 4 && cells[4].rowSpan > 1) {
+                        currentZona = cells[4].innerText.trim();
+                        spanCount = cells[4].rowSpan;
+                    }
+
+                    // Show or hide the row
+                    if (selectedZona === "all" || currentZona.includes(selectedZona)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+
+                    spanCount--;
+                });
+            });
+            let columnIndex = 0;
+            pilihKategoriElement.addEventListener('change', () => {
+                //filtering for selected kategori
+                const selectedKategori = pilihKategoriElement.value;
+
+                const kategoriMap = {
+                    "TREAD": 6,
+                    "PLY1": 7,
+                    "PLY2": 8,
+                    "BEAD_FINISH": 9,
+                    "SIDEWALL": 10,
+                    "TUBELESS": 11,
+                    "JOINTLESS": 12,
+                    "BELT1": 13,
+                    "BELT2": 14
+                };
+
+                columnIndex = kategoriMap[selectedKategori] || 0;
+            });
 
             function filterTable() {
                 const searchValue = document.querySelector('#search').value.toLowerCase();
-                const pilihSearchValue = document.querySelector('#pilihSearch').value;
+                // const pilihSearchValue = document.querySelector('#pilihSearch').value;
+
+                //seard by column index
+                let spanCount = 0;
+                let currentCategory = "";
+                let currentZona = "";
+
 
                 const rows = document.querySelectorAll('#scheduleTable tbody tr');
 
                 rows.forEach(row => {
-                    const column = document.querySelector(`#scheduleTable thead tr th:nth-child(${pilihSearchValue === 'mesin' ? 1 : pilihSearchValue === 'size' ? 2 : pilihSearchValue === 'kategori' ? 4 : 5})`);
+                    // const column = document.querySelector(`#scheduleTable thead tr th:nth-child(${index + 1})`);
                     const cells = Array.from(row.cells);
-                    const matches = cells.some((cell, index) => index === column.cellIndex && cell.textContent.toLowerCase().includes(searchValue));
+                    // if (cells[0] && cells[0].rowSpan > 1) {
+                    //     currentCategory = cells[0].innerText.trim();
+                    // }
+                    // if (cells.length > 4 && cells[4].rowSpan > 1) {
+                    //     currentZona = cells[4].innerText.trim();
+                    //     spanCount = cells[4].rowSpan;
+                    // }
+                    const matches = cells.some((cell, index) => index === columnIndex && cell.textContent.toLowerCase().includes(searchValue));
                     row.style.display = matches ? '' : 'none';
+                    // spanCount--;
                 });
                 // const mesin = document.querySelector('#mesin').value.toLowerCase();
                 // const size = document.querySelector('#size').value.toLowerCase();
